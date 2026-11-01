@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../lib/posts';
+import { SITE } from '../consts';
+
+const posts = (await getPosts()).slice(0, 5);
+---
+
+<Base>
+  <section class="intro">
+    <h1>Hi, I'm Zein.</h1>
+    <p>
+      I'm a software engineer in Amman. I build AI agents and the infrastructure they run on. This is where I write
+      down what I learn while doing it: what worked, what broke, and what I'd do again.
+    </p>
+    <p class="muted">
+      <a href="/about/">More about me</a> · <a href={SITE.github}>GitHub</a> · <a href={SITE.x}>X</a> · <a
+        href="/rss.xml">RSS</a
+      >
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Latest writing</h2>
+    {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">The first posts are on their way.</p>}
+    {posts.length > 0 && <p><a href="/writing/">All writing →</a></p>}
+  </section>
+</Base>

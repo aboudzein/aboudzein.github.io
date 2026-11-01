@@ -1,0 +1,28 @@
+---
+import { formatDate, readingTime, type Post } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+}
+
+const items = await Promise.all(Astro.props.posts.map(async (post) => ({ post, minutes: await readingTime(post) })));
+---
+
+<ul class="post-list">
+  {
+    items.map(({ post, minutes }) => (
+      <li>
+        <a href={`/writing/${post.id}/`}>
+          <span class="post-title">
+            {post.data.title}
+            {post.data.draft && <span class="badge">draft</span>}
+          </span>
+          <span class="post-desc">{post.data.description}</span>
+          <span class="post-meta">
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time> · {minutes} min read
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

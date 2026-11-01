@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aboudzein.github.io/sitemap-index.xml

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { allTags, getPosts } from '../../lib/posts';
+
+const posts = await getPosts();
+const tags = allTags(posts);
+---
+
+<Base title="Writing" description="Everything I've written, newest first.">
+  <h1>Writing</h1>
+  {
+    tags.length > 0 && (
+      <ul class="tags tag-cloud" aria-label="Tags">
+        {tags.map(({ tag, slug, count }) => (
+          <li>
+            <a href={`/tags/${slug}/`}>
+              #{tag} <span class="count">{count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">Nothing published yet. Soon.</p>}
+</Base>

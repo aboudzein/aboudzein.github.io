@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+
+<Base title="About" description="Zein Eddin, software engineer in Amman building AI agents and agent infrastructure.">
+  <article class="prose about">
+    <h1>About</h1>
+    <p>
+      I'm Zein Eddin, a software engineer in Amman, Jordan. I build AI agents and the infrastructure around them: the
+      servers they run on, the tools they call, the tests that keep them honest, and the deploys that ship them.
+    </p>
+    <p>
+      Most days I work with coding agents as teammates. I hand them real tasks, review what they do, and keep notes on
+      where they help and where they don't. Those notes become the posts here.
+    </p>
+    <p>I mostly write C# and TypeScript, and I like small, boring systems that are easy to trust.</p>
+    <h2>Elsewhere</h2>
+    <ul>
+      <li>GitHub: <a href={SITE.github} rel="me">aboudzein</a></li>
+      <li>X: <a href={SITE.x} rel="me">{SITE.xHandle}</a></li>
+      <li>RSS: <a href="/rss.xml">/rss.xml</a></li>
+    </ul>
+    <p class="muted">This site has no analytics, cookies or trackers.</p>
+  </article>
+</Base>

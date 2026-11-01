@@ -1,0 +1,416 @@
+:root {
+  --bg: #fbfbfa;
+  --bg-soft: #f2f2ef;
+  --text: #1d1f22;
+  --muted: #5c6370;
+  --border: #e3e3df;
+  --accent: #2f6f6a;
+  --accent-soft: #e4efed;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --measure: 42rem;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #131416;
+  --bg-soft: #1b1d20;
+  --text: #e4e4e2;
+  --muted: #9ba1a9;
+  --border: #2a2d31;
+  --accent: #82c8c0;
+  --accent-soft: #1d2b2a;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 0 4rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2.2em 0 0.6em;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--bg);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+/* Header and footer */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-name {
+  color: var(--text);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current='page'] {
+  color: var(--text);
+}
+
+#theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: -0.5rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  color: var(--text);
+  background: var(--bg-soft);
+}
+
+[data-theme='dark'] .icon-moon,
+:root:not([data-theme='dark']) .icon-sun {
+  display: none;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+/* Home */
+
+.intro h1 {
+  font-size: 1.75rem;
+}
+
+.intro p {
+  margin: 0.75rem 0;
+}
+
+.section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 3rem 0 0.5rem;
+}
+
+/* Post list */
+
+.post-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.post-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.post-list a {
+  display: block;
+  padding: 1.1rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-title {
+  display: block;
+  font-weight: 620;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.post-list a:hover .post-title {
+  color: var(--accent);
+}
+
+.post-desc {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.post-meta {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0 0.45rem;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* Tags */
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+}
+
+.tags a {
+  text-decoration: none;
+}
+
+.tag-cloud {
+  margin-bottom: 1.5rem;
+}
+
+.tag-cloud .count {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* Post */
+
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header .post-meta {
+  margin: 0.5rem 0 0;
+}
+
+.series {
+  margin: 0 0 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-soft);
+  font-size: 0.95rem;
+}
+
+.series p {
+  margin: 0 0 0.5rem;
+}
+
+.series ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.series [aria-current='page'] {
+  font-weight: 600;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose table {
+  margin: 1.1em 0;
+}
+
+.prose li + li {
+  margin-top: 0.3em;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.prose blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.45rem 0.75rem 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose .expressive-code {
+  margin: 1.5em 0;
+}
+
+/* Math */
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* Mermaid diagrams are rendered to SVG at build time with the neutral theme; invert them in dark mode. */
+
+.prose svg[id^='mermaid'] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75em auto;
+}
+
+[data-theme='dark'] .prose svg[id^='mermaid'] {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+  }
+}

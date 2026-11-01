@@ -1,0 +1,64 @@
+---
+import 'katex/dist/katex.min.css';
+import Base from './Base.astro';
+import { formatDate, seriesParts, slugifyTag, getPosts, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+  minutes: number;
+}
+
+const { post, minutes } = Astro.props;
+const { title, description, date, updated, tags, series, draft } = post.data;
+const parts = seriesParts(await getPosts(), post);
+---
+
+<Base title={title} description={description} image={`/og/${post.id}.png`} type="article" publishedTime={date}>
+  <article class="post">
+    <header class="post-header">
+      <h1>{title}</h1>
+      <p class="post-meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {updated && <span> · updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time></span>}
+        <span> · {minutes} min read</span>
+        {draft && <span class="badge">draft</span>}
+      </p>
+      {
+        tags.length > 0 && (
+          <ul class="tags" aria-label="Tags">
+            {tags.map((t) => (
+              <li>
+                <a href={`/tags/${slugifyTag(t)}/`}>#{t}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    {
+      series && parts.length > 1 && (
+        <nav class="series" aria-label="Series">
+          <p>
+            Part {series.part} of {parts.length} in <strong>{series.name}</strong>
+          </p>
+          <ol>
+            {parts.map((p) => (
+              <li>
+                {p.id === post.id ? (
+                  <span aria-current="page">{p.data.title}</span>
+                ) : (
+                  <a href={`/writing/${p.id}/`}>{p.data.title}</a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>
