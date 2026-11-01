@@ -37,7 +37,14 @@ export default defineConfig({
       remarkPlugins: [remarkReadingTime, remarkMath, remarkMermaidPre],
       rehypePlugins: [
         [rehypeKatex, { output: 'html', throwOnError: true }],
-        [rehypeMermaid, { strategy: 'inline-svg', mermaidConfig: { theme: 'neutral', fontFamily: 'inherit' } }],
+        [
+          rehypeMermaid,
+          {
+            strategy: 'inline-svg',
+            css: new URL('./src/styles/mermaid-font.css', import.meta.url),
+            mermaidConfig: { theme: 'neutral', fontFamily: 'Inter, sans-serif' },
+          },
+        ],
       ],
     }),
   },

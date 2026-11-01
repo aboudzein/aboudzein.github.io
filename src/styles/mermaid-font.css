@@ -1,0 +1,6 @@
+/* Loaded into headless Chromium when Mermaid renders at build time, so labels are measured with the same font the site shows them in. */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  src: url('../../public/fonts/inter-latin-400.woff2') format('woff2');
+}

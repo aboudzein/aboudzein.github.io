@@ -392,6 +392,15 @@ h3 {
   padding: 0.25rem 0;
 }
 
+/* Diagram labels use the same font Mermaid measured them with at build time. Only pages with diagrams download it. */
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin-400.woff2') format('woff2');
+}
+
 /* Mermaid diagrams are rendered to SVG at build time with the neutral theme; invert them in dark mode. */
 
 .prose svg[id^='mermaid'] {
